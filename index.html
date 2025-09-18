@@ -39,10 +39,46 @@
                  <svg class="h-8 w-8 text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
                 <span class="text-xl font-semibold text-gray-700">Modern iChing</span>
             </div>
-            <nav class="space-x-6 text-gray-600">
-                <a href="#support" class="hover:text-gray-900 transition-colors">Support</a>
-                <a href="#privacy" class="hover:text-gray-900 transition-colors">Privacy Policy</a>
-            </nav>
+            <div class="flex items-center space-x-6">
+                <nav class="space-x-6 text-gray-600">
+                    <a href="#support" class="hover:text-gray-900 transition-colors">Support</a>
+                    <a href="#privacy" class="hover:text-gray-900 transition-colors">Privacy Policy</a>
+                </nav>
+                
+                <!-- Language Selector -->
+                <div class="relative">
+                    <button id="languageDropdown" class="flex items-center space-x-2 px-3 py-2 text-gray-600 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-100">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                        </svg>
+                        <span class="text-sm font-medium">EN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    
+                    <div id="languageMenu" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                        <div class="py-2">
+                            <a href="index.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <span class="mr-3">🇺🇸</span>
+                                English
+                            </a>
+                            <a href="index-es.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <span class="mr-3">🇪🇸</span>
+                                Español
+                            </a>
+                            <a href="index-fr.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <span class="mr-3">🇫🇷</span>
+                                Français
+                            </a>
+                            <a href="index-pt.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <span class="mr-3">🇵🇹</span>
+                                Português
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -175,6 +211,35 @@
              <p>&copy; 2025 Modern iChing. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Language Dropdown JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.getElementById('languageDropdown');
+            const menu = document.getElementById('languageMenu');
+            
+            // Toggle dropdown on click
+            dropdown.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                menu.classList.toggle('hidden');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!dropdown.contains(e.target) && !menu.contains(e.target)) {
+                    menu.classList.add('hidden');
+                }
+            });
+            
+            // Close dropdown on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    menu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
